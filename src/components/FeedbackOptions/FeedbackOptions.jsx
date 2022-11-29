@@ -48,33 +48,30 @@
 // export default FeedbackOptions;
 
 // WITH EMOTION =====================================================================================================================
+import PropTypes from 'prop-types';
 
-import { Component } from 'react';
+import { Button, FeedbackBtnList } from './FeedbackOptions.styled';
 
-import {
-  Button,
-  FeedbackBtnList,
-  FeedbackBtnItem,
-} from './FeedbackOptions.styled';
+const FeedbackOptions = ({ onLeaveFeedback, options }) => {
+  // console.log(typeof options);
+  return (
+    <FeedbackBtnList>
+      {options.map((option, i) => {
+        return (
+          <li key={i}>
+            <Button type="button" name={option} onClick={onLeaveFeedback}>
+              {option}
+            </Button>
+          </li>
+        );
+      })}
+    </FeedbackBtnList>
+  );
+};
 
-export class FeedbackOptions extends Component {
-  render() {
-    const { onLeaveFeedback, options } = this.props;
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string),
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
-    const optionsKeys = Object.keys(options);
-
-    return (
-      <FeedbackBtnList>
-        {optionsKeys.map((optionsKey, i) => {
-          return (
-            <FeedbackBtnItem key={i}>
-              <Button type="button" name={optionsKey} onClick={onLeaveFeedback}>
-                {optionsKey}
-              </Button>
-            </FeedbackBtnItem>
-          );
-        })}
-      </FeedbackBtnList>
-    );
-  }
-}
+export default FeedbackOptions;

@@ -22,21 +22,22 @@
 // export default Section;
 
 // WITH EMOTION =====================================================================================================================
-
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { FeedbackSection, Title } from './Section.styled';
 
-export class Section extends Component {
-  render() {
-    const { children } = this.props;
-    const { title } = this.props;
+const Section = ({ children, title }) => {
+  return (
+    <FeedbackSection>
+      <Title>{title}</Title>
+      {children}
+    </FeedbackSection>
+  );
+};
 
-    return (
-      <FeedbackSection>
-        <Title>{title}</Title>
-        {children}
-      </FeedbackSection>
-    );
-  }
-}
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
+
+export default Section;

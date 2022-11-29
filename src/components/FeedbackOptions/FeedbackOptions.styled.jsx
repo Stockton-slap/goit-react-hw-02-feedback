@@ -6,8 +6,6 @@ export const FeedbackBtnList = styled.ul`
   list-style: none;
 `;
 
-export const FeedbackBtnItem = styled.li``;
-
 export const Button = styled.button`
   width: 80px;
   border-radius: 5px;

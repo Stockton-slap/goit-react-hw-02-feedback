@@ -46,38 +46,39 @@
 
 // WITH EMOTION =====================================================================================================================
 
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { StatsList, StatsItem } from './Statistics.styled';
-import { Notification } from 'components/Notification/Notification';
 
-export class Statistics extends Component {
-  render() {
-    const { good, neutral, bad, total, positivePercentage } = this.props;
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
+  return (
+    <StatsList>
+      <StatsItem>
+        Good: <b>{good}</b>
+      </StatsItem>
+      <StatsItem>
+        Neutral: <b>{neutral}</b>
+      </StatsItem>
+      <StatsItem>
+        Bad: <b>{bad}</b>
+      </StatsItem>
+      <br />
+      <StatsItem>
+        Total: <b>{total}</b>
+      </StatsItem>
+      <StatsItem>
+        Positive feedback: <b>{positivePercentage}</b>
+      </StatsItem>
+    </StatsList>
+  );
+};
 
-    if (total === 0) {
-      return <Notification message="There is no feedback"></Notification>;
-    }
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.string.isRequired,
+};
 
-    return (
-      <StatsList>
-        <StatsItem>
-          Good: <b>{good}</b>
-        </StatsItem>
-        <StatsItem>
-          Neutral: <b>{neutral}</b>
-        </StatsItem>
-        <StatsItem>
-          Bad: <b>{bad}</b>
-        </StatsItem>
-        <br />
-        <StatsItem>
-          Total: <b>{total}</b>
-        </StatsItem>
-        <StatsItem>
-          Positive feedback: <b>{positivePercentage}</b>
-        </StatsItem>
-      </StatsList>
-    );
-  }
-}
+export default Statistics;

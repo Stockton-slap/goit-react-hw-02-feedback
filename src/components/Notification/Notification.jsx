@@ -16,15 +16,16 @@
 // export default Notification;
 
 // WITH EMOTION =====================================================================================================================
-
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { Message } from './Notification.styled';
 
-export class Notification extends Component {
-  render() {
-    const { message } = this.props;
+const Notification = ({ message }) => {
+  return <Message>{message}</Message>;
+};
 
-    return <Message>{message}</Message>;
-  }
-}
+Notification.propTypes = {
+  message: PropTypes.string.isRequired,
+};
+
+export default Notification;
